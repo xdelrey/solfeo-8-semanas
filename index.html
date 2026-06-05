@@ -3,134 +3,72 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Solfeo - Calendario de 8 semanas</title>
+    <title>Solfeo de esta noche</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header class="start-screen" id="start-screen">
-      <div>
-        <p class="eyebrow">23:00 - 00:00 · sin instrumento · voz baja</p>
+      <div class="start-copy">
         <h1>Solfeo de esta noche</h1>
+        <p>23:00-00:00 · voz baja · sin instrumento</p>
       </div>
-      <button class="launch-button" id="today-button" type="button">Ver leccion de hoy</button>
+      <button class="launch-button" id="start-button" type="button">Empezar</button>
       <noscript>
-        <p class="no-script">
-          Esta app necesita JavaScript. Abrela en Safari, Chrome o Edge, no en la vista previa de Google Drive.
-        </p>
+        <p class="no-script">Esta app necesita JavaScript. Ábrela en Safari, Chrome o Edge.</p>
       </noscript>
     </header>
 
     <main class="app-view is-hidden" id="app-view">
-      <section class="tonight" aria-labelledby="tonight-title">
-        <div class="tonight-header">
-          <div>
-            <p class="eyebrow">Menu del dia</p>
-            <h2 id="tonight-title">Sesion de esta noche</h2>
-            <p id="tonight-subtitle" class="tonight-subtitle">
-              Sigue los bloques en orden. Puedes ajustar el dia si vas adelantado o atrasado.
-            </p>
+      <section class="lesson-header" aria-labelledby="lesson-title">
+        <div>
+          <p class="eyebrow" id="lesson-kicker">Día 1 de 56</p>
+          <h2 id="lesson-title">Sesión de esta noche</h2>
+          <p class="lesson-focus" id="lesson-focus"></p>
+        </div>
+        <div class="progress-summary" aria-label="Progreso del plan">
+          <span id="week-label">Semana 1</span>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progress-fill"></div>
           </div>
         </div>
+      </section>
 
-        <div class="day-picker" aria-label="Selector manual del dia del plan">
-          <label for="plan-day">Dia del plan</label>
+      <section class="lesson-steps" id="lesson-steps" aria-live="polite"></section>
+
+      <section class="done-panel" aria-labelledby="done-title">
+        <div>
+          <p class="eyebrow">Cierre</p>
+          <h2 id="done-title">Cuando termines</h2>
+          <p id="done-message">Marca la sesión como hecha para dejar preparado el próximo día.</p>
+        </div>
+        <button class="done-button" id="complete-button" type="button">Marcar como hecha</button>
+      </section>
+
+      <details class="utility-panel">
+        <summary>Ajustes</summary>
+        <div class="settings-grid">
+          <label for="plan-day">Día del plan</label>
           <input id="plan-day" type="number" min="1" max="56" value="1">
-          <button class="secondary-action" id="load-day-button" type="button">Cargar dia</button>
-          <button class="secondary-action" id="next-day-button" type="button">Siguiente</button>
+          <button class="secondary-button" id="load-day-button" type="button">Cargar día</button>
         </div>
+      </details>
 
-        <div class="session-card" id="daily-session" aria-live="polite">
-          <div class="empty-state">
-            <strong>Listo para las 23:00.</strong>
-            <span>El menu aparecera aqui con bloques de 5, 10 y 15 minutos.</span>
-          </div>
+      <details class="utility-panel">
+        <summary>Alternativas</summary>
+        <div class="alternative-grid">
+          <a href="https://sightsing.app/" target="_blank" rel="noreferrer">SightSing</a>
+          <span>Úsala si quieres feedback específico de canto a primera vista.</span>
+          <a href="https://completemusictrainer.com/" target="_blank" rel="noreferrer">Complete Music Trainer</a>
+          <span>Úsala como alternativa barata para lectura, ritmo y oído.</span>
         </div>
-      </section>
+      </details>
 
-      <details class="reference-panel">
+      <details class="utility-panel">
         <summary>Ver calendario completo</summary>
-
-        <section class="routine" aria-labelledby="routine-title">
-        <div>
-          <p class="eyebrow">Rutina fija</p>
-          <h2 id="routine-title">Cada noche</h2>
-        </div>
-        <ol class="routine-grid">
-          <li><time>23:00</time><span>Respiración, postura y pulso silencioso.</span></li>
-          <li><time>23:05</time><span>Lectura rápida de notas.</span></li>
-          <li><time>23:15</time><span>Ritmo con dedos o metrónomo bajo.</span></li>
-          <li><time>23:25</time><span>Oído tonal: grados y tensión/reposo.</span></li>
-          <li><time>23:35</time><span>Solfeo mental o “mmm” muy suave.</span></li>
-          <li><time>23:50</time><span>Melodía nueva a primera vista.</span></li>
-          <li><time>23:57</time><span>Registro: fallo, acierto y mañana.</span></li>
-        </ol>
-      </section>
-
-        <section class="controls" aria-label="Selector de semana">
-        <button class="week-button active" type="button" data-week="all">Todas</button>
-        <button class="week-button" type="button" data-week="1">Semana 1</button>
-        <button class="week-button" type="button" data-week="2">Semana 2</button>
-        <button class="week-button" type="button" data-week="3">Semana 3</button>
-        <button class="week-button" type="button" data-week="4">Semana 4</button>
-        <button class="week-button" type="button" data-week="5">Semana 5</button>
-        <button class="week-button" type="button" data-week="6">Semana 6</button>
-        <button class="week-button" type="button" data-week="7">Semana 7</button>
-        <button class="week-button" type="button" data-week="8">Semana 8</button>
-      </section>
-
-        <section class="calendar" id="calendar" aria-live="polite"></section>
-
-        <section class="checkpoints" aria-labelledby="checkpoints-title">
-        <div>
-          <p class="eyebrow">Domingo</p>
-          <h2 id="checkpoints-title">Prueba semanal</h2>
-        </div>
-        <div class="checkpoint-list">
-          <p>Elige una melodía nueva de 4-8 compases, mírala 60 segundos y cántala sin parar.</p>
-          <p>Puntúa de 1 a 5: notas, ritmo, pulso y seguridad. Si fallas, anota solo el patrón que se repite.</p>
-          <p>Objetivo de la semana 8: cantar una melodía fácil manteniendo pulso y dirección melódica.</p>
-        </div>
-      </section>
+        <section class="calendar" id="calendar" aria-label="Calendario de ocho semanas"></section>
       </details>
     </main>
 
     <script src="script.js"></script>
-    <script>
-      if (!window.solfeoAppLoaded) {
-        const button = document.querySelector("#today-button");
-        const start = document.querySelector("#start-screen");
-        const app = document.querySelector("#app-view");
-        const session = document.querySelector("#daily-session");
-        const subtitle = document.querySelector("#tonight-subtitle");
-
-        button.addEventListener("click", () => {
-          start.classList.add("is-hidden");
-          app.classList.remove("is-hidden");
-          subtitle.textContent = "Modo movil simplificado. Sigue esta sesion base de 23:00 a 00:00.";
-          session.innerHTML = `
-            <div class="session-summary">
-              <div>
-                <p class="eyebrow">Leccion de hoy</p>
-                <h3>Sesion base de solfeo</h3>
-                <p>Lectura de notas, ritmo, oido tonal y solfeo mental en modo noche.</p>
-              </div>
-              <div class="session-meta">
-                <span>23:00-00:00</span>
-                <span>voz baja</span>
-              </div>
-            </div>
-            <div class="session-steps">
-              <article class="session-step"><div class="step-time">23:00-23:05</div><div class="step-main"><strong>Preparacion</strong><span>Respira lento, relaja mandibula y marca pulso con dedos.</span></div><div class="step-tool">sin app</div></article>
-              <article class="session-step"><div class="step-time">23:05-23:15</div><div class="step-main"><strong>Lectura</strong><span>Reconoce notas en clave de sol. Di el nombre mentalmente.</span></div><div class="step-tool">musictheory.net</div></article>
-              <article class="session-step"><div class="step-time">23:15-23:25</div><div class="step-main"><strong>Ritmo</strong><span>Marca pulso suave y lee negras, blancas y corcheas por dentro.</span></div><div class="step-tool">metronomo bajo</div></article>
-              <article class="session-step"><div class="step-time">23:25-23:35</div><div class="step-main"><strong>Oido</strong><span>Trabaja grados 1-2-3-4-5. Nota reposo y tension.</span></div><div class="step-tool">Functional Ear Trainer</div></article>
-              <article class="session-step"><div class="step-time">23:35-23:50</div><div class="step-main"><strong>Solfeo</strong><span>Canta mentalmente o con mmm muy suave. No susurres.</span></div><div class="step-tool">sin app</div></article>
-              <article class="session-step"><div class="step-time">23:50-23:57</div><div class="step-main"><strong>Primera vista</strong><span>Mira una melodia facil y recorrelas sin parar.</span></div><div class="step-tool">Complete Music Trainer</div></article>
-              <article class="session-step"><div class="step-time">23:57-00:00</div><div class="step-main"><strong>Cierre</strong><span>Anota un fallo, un acierto y el foco de manana.</span></div><div class="step-tool">libreta</div></article>
-            </div>
-          `;
-        });
-      }
-    </script>
   </body>
 </html>
