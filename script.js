@@ -7,7 +7,8 @@ const concepts = {
   tonica: "La tónica es la nota de reposo. En Do mayor, la tónica es do.",
   dominante: "La dominante es el grado 5. Suele crear tensión estable que quiere volver a la tónica.",
   primeraVista: "Primera vista significa cantar una melodía nueva sin estudiarla antes. Preparas poco y no te detienes.",
-  mmm: "El mmm suave entrena afinación sin cantar alto. No susurres: el susurro no fija altura."
+  mmm: "El mmm suave entrena afinación sin cantar alto. No susurres: el susurro no fija altura.",
+  earmaster: "En la pantalla inicial de EarMaster, entra por Curso para Principiantes. Durante estas semanas evita Talleres, repertorio y Ejercicios personalizados."
 };
 
 const weeks = [
@@ -137,44 +138,49 @@ const sessionTemplate = [
     time: "23:05",
     duration: "10 min",
     title: "Lee",
-    text: "Abre EarMaster. Haz lectura lenta de notas y ritmo. Prioriza pulso estable.",
+    text: "En EarMaster, toca Curso para Principiantes y empieza la primera lección disponible. Marca pulso antes de responder.",
     tool: true,
+    route: "Curso para Principiantes → primera lección disponible",
     usesFocus: true,
-    concepts: ["grados"]
+    concepts: ["earmaster", "grados"]
   },
   {
     time: "23:15",
     duration: "10 min",
     title: "Escucha",
-    text: "Trabaja oído tonal. Localiza reposo y tensión antes de responder.",
+    text: "Sigue la lección de Principiantes. Atiende a reposo y tensión; no abras otros talleres.",
     tool: true,
-    concepts: ["tonica", "dominante"]
+    route: "Curso para Principiantes → continuar lección actual",
+    concepts: ["earmaster", "tonica", "dominante"]
   },
   {
     time: "23:25",
     duration: "15 min",
     title: "Canta",
-    text: "Haz canto a primera vista con audiación o mmm suave. Revisa solo al final.",
+    text: "Sigue la misma lección. Si pide cantar, usa mmm suave o audiación cuando necesites practicar bajo.",
     tool: true,
+    route: "Curso para Principiantes → continuar lección actual",
     usesFocus: true,
-    concepts: ["audiacion", "mmm"]
+    concepts: ["earmaster", "audiacion", "mmm"]
   },
   {
     time: "23:40",
     duration: "12 min",
     title: "Repite",
-    text: "Repite el ejercicio más incómodo de la sesión. Baja tempo antes de subir dificultad.",
+    text: "Repite la parte que EarMaster marque como fallo. Si no hay repetición, repite el último ejercicio.",
     tool: true,
-    concepts: ["grados"]
+    route: "Curso para Principiantes → repetir o continuar",
+    concepts: ["earmaster", "grados"]
   },
   {
     time: "23:52",
     duration: "5 min",
     title: "Primera vista",
-    text: "Haz una toma nueva. Mira 30 segundos, canta una vez y no te detengas.",
+    text: "Haz una toma sin parar dentro de la lección activa. Mira, respira y sigue aunque falles.",
     tool: true,
+    route: "Curso para Principiantes → continuar lección actual",
     usesFocus: true,
-    concepts: ["primeraVista"]
+    concepts: ["earmaster", "primeraVista"]
   },
   {
     time: "23:57",
@@ -262,7 +268,13 @@ function renderInfoButtons(conceptKeys = []) {
 
 function renderToolLink(step) {
   if (!step.tool) return "";
-  return `<a class="tool-link" href="${EARMASTER_URL}" target="_blank" rel="noreferrer">Abrir EarMaster</a>`;
+
+  return `
+    <div class="tool-box">
+      <a class="tool-link" href="${EARMASTER_URL}" target="_blank" rel="noreferrer">Abrir EarMaster</a>
+      <span class="tool-route">Ruta: ${step.route}</span>
+    </div>
+  `;
 }
 
 function renderLesson(day) {
