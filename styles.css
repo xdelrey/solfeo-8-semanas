@@ -240,6 +240,21 @@ h2 {
   border-color: var(--accent);
 }
 
+.tool-box {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  max-width: 210px;
+}
+
+.tool-route {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 750;
+  line-height: 1.32;
+  text-align: right;
+}
+
 .info-wrap {
   position: relative;
   display: inline-flex;
@@ -423,6 +438,15 @@ h2 {
 
   .tool-link {
     width: 100%;
+  }
+
+  .tool-box {
+    max-width: none;
+    justify-items: stretch;
+  }
+
+  .tool-route {
+    text-align: left;
   }
 
   .done-button {
