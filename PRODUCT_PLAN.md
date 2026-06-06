@@ -27,6 +27,8 @@ Fuentes usadas:
 - Herramientas:
   - Recomendación principal: **EarMaster**.
   - Añadir un botón `Abrir EarMaster` cuando el bloque requiera app.
+  - Mostrar siempre la ruta concreta dentro de EarMaster: `Curso para Principiantes → primera lección disponible` o `Curso para Principiantes → continuar lección actual`.
+  - En las primeras semanas, no pedir al usuario que decida entre `Talleres Generales`, repertorio o `Ejercicios personalizados`.
   - Evitar musictheory.net, teoría.com, Functional Ear Trainer y Complete Music Trainer en el flujo diario base.
   - Mantener enlaces secundarios solo en una sección oculta `Alternativas`.
 - Ayuda contextual:
